@@ -12,11 +12,14 @@ There is no application source code yet. This repository serves as a framework t
 
 The framework defines a complete development lifecycle:
 
-- **Squad Model**: Self-contained teams of 6–10 (PO, EM, Architect, 3-5 Backend, 2 Frontend, 1 SDET, 1 DevOps)
-- **SDLC Stages**: Discovery/RFC → Sprint Execution → Quality Gate → Deployment & Operations
-- **Quality Gate Pipeline**: Lint → Unit Tests → Integration Tests → Security/SAST → Peer Review → Merge
-- **Git Flow**: Feature branches only — no direct pushes to `main`
-- **AI Persona Modes**: Architect mode, PO mode, Dev mode (see SKILL.md §"How to Initialize this AI")
+- **Squad Model**: Self-contained teams of 6–10 (PO, EM, Architect, QA/SDET, 3-5 Backend, 2 Frontend, 1 DevOps/SRE)
+- **QA Role**: First-class squad member — owns test plans, shift-left testing, QA sign-off on quality gate, and defect tracking
+- **SDLC Stages**: Discovery/RFC → Sprint Execution → GitHub Workflow → Quality Gate → Deployment & Operations
+- **GitHub Workflow**: Full branching strategy, PR lifecycle, PR templates, branch protection rules (see SKILL.md §2.5)
+- **Quality Gate Pipeline**: Lint → Unit Tests → Integration Tests → Security/SAST → **QA Sign-off** → Peer Review → Merge
+- **Git Worktree + PR Comments**: Agents use worktrees for parallel feature work and post decisions as GitHub PR/issue comments for traceability (see SKILL.md §4)
+- **Agent Teams Mode (default)**: AI always operates as a full squad — launching parallel Task agents for Architect, QA, Dev, Security, and Code Review roles (see SKILL.md §6)
+- **AI Persona Modes**: Team mode (default), Architect mode, PO mode, Dev mode, QA mode (see SKILL.md §"How to Initialize this AI")
 
 ## Key Principles
 
@@ -28,5 +31,7 @@ The framework defines a complete development lifecycle:
 ## Git Workflow
 
 - All work happens on feature branches; `main` is protected
-- Peer review is required before merge
+- Peer review + QA sign-off required before merge
 - Follow conventional commit format: `<type>: <description>`
+- Use git worktrees for parallel feature development
+- Document decisions via GitHub PR/issue comments with role tags (`**[Architect]**:`, `**[QA]**:`, etc.)
